@@ -1,0 +1,53 @@
+{
+  "db": {
+    "host": "tcc-cse-cic-ids.c3o0mem8emzt.us-east-2.rds.amazonaws.com",
+    "port": 5432,
+    "database": "tcc_cse_cic_ids",
+    "user": "postgres",
+    "password": "63aUM6Tjh7",
+    "sslmode": "require"
+  },
+  "table": "network_flows",
+  "timestamp_col": "timestamp",
+  "label_col": "label",
+  "id_like_cols": [],
+  "categorical_cols": [
+    "protocol"
+  ],
+  "positive_label": "MALICIOUS",
+  "negative_label": "BENIGN",
+  "sample": {
+    "enable": true,
+    "rows": 200000,
+    "random_state": 42
+  },
+  "chunksize": 100000,
+  "output_dir": "outputs",
+  "models": {
+    "rf": {
+      "n_estimators": 200,
+      "max_depth": null,
+      "n_jobs": -1,
+      "random_state": 42
+    },
+    "logreg": {
+      "max_iter": 200,
+      "n_jobs": -1
+    }
+  },
+  "trend": {
+    "freq": "H",
+    "forecast_steps": 168,
+    "order": [
+      1,
+      0,
+      1
+    ],
+    "seasonal_order": [
+      1,
+      0,
+      1,
+      24
+    ]
+  }
+}
